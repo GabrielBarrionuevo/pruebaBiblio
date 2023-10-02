@@ -1,0 +1,38 @@
+[
+    {
+        "id_libro": "Li00002",
+        "id_estado": "ES00002",
+        "Prueba": "Prueba01",
+        "Lorena": "Lorena01",
+        "Imagen": "https://i.pinimg.com/474x/f6/e8/68/f6e8687fb80896fb737f788239d385b7.jpg"
+    },
+    {
+        "id_libro": "Li00003",
+        "id_estado": "ES00003",
+        "Prueba": "Prueba01",
+        "Lorena": "Lorena01",
+        "Imagen": "https://i.pinimg.com/474x/f6/e8/68/f6e8687fb80896fb737f788239d385b7.jpg"
+    },
+    {
+        "id_libro": "Li00004",
+        "id_estado": "ES00004",
+        "Prueba": "Prueba02",
+        "Lorena": "Lorena02",
+        "Imagen": "https://c-cl.cdn.smule.com/rs-s28/arr/84/b2/c91b5f04-4d46-428d-979f-24ae56cd8118.jpg"
+    },
+    {
+        "id_libro": "Li00005",
+        "id_estado": "ES00003",
+        "Prueba": "Prueba03",
+        "Lorena": "Lorena03",
+        "Imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCL0lbiju7BDYL9Ra6ZMnuSFoD7lglZsooa_1-mCfYFXfaYhvvxnoFwH1RuIYE8oCWlgI&usqp=CAU"
+    },
+    {
+        "id_libro": "Li00006",
+        "id_estado": "ES00003",
+        "Prueba": "Prueba04",
+        "Lorena": "Lorena04",
+    "Imagen": "https://pm1.aminoapps.com/6356/96707ff12db812d01f4625c97b2d5589f5d63846_128.jpg"
+    }
+]
+

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Datos desde JSON</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        select {
+            margin-bottom: 10px;
+        }
+        #imagenContainer {
+            margin-top: 20px;
+        }
+        #imagenContainer img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Biblioteca</h1>
+    
+    <!-- Filtro para seleccionar un libro por su id -->
+    <label for="libroSelector">Selecciona un libro:</label>
+    <select id="libroSelector">
+        <!-- Options se llenarán dinámicamente desde el JSON -->
+    </select>
+    
+    <!-- Contenedor para mostrar el estado y la prueba del libro seleccionado -->
+    <div id="infoContainer"></div>
+
+    <!-- Contenedor para mostrar la imagen -->
+    <div id="imagenContainer">
+        <img id="libroImagen" src="" alt="Imagen del libro">
+    </div>
+
+    <script>
+        // Función para cargar y mostrar datos desde un archivo JSON local
+        function cargarYMostrarDatos() {
+            const libroSeleccionado = document.getElementById("libroSelector").value;
+            const infoContainer = document.getElementById("infoContainer");
+            const libroImagen = document.getElementById("libroImagen");
+
+            // Limpiar el contenedor de datos y la imagen
+            infoContainer.innerHTML = "";
+            libroImagen.src = "";
+
+            // Realizar una solicitud HTTP para cargar el archivo JSON local
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "datos2.json", true); // Cambia "datos.json" al nombre de tu archivo JSON
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+
+                    // Buscar el libro correspondiente al id seleccionado 
+                    const libro = data.find(item => item.id_libro === libroSeleccionado);
+
+                    if (libro) {
+                        const elemento = document.createElement("p");
+                        elemento.textContent = `
+                            Lista de deseos: ${libro.lista_de_deseos},
+                            Forrado: ${libro.forrado},
+                            Notas: ${libro.notas},
+                            Formato: ${libro.formato},
+                            Última limpieza: ${libro.ultima_limpieza},
+                            Fecha de estado: ${libro.fecha_estado},
+                            `;
+                        infoContainer.appendChild(elemento);
+
+                        // Mostrar la imagen del libro
+                        libroImagen.src = libro.portada_link;
+                    } else {
+                        infoContainer.textContent = "Libro no encontrado.";
+                    }
+
+                    if (libro) {
+                        const elemento = document.createElement("p");
+                        elemento.textContent = `
+                            Origen: ${libro.origen},
+                            De quién: ${libro.de_quien},
+                            Lugar: ${libro.lugar},
+                            Precio: ${libro.precio},
+                            Fecha de adquisición: ${libro.fecha_adquisicion},
+                            `;
+                        infoContainer.appendChild(elemento);
+
+                        // Mostrar la imagen del libro
+                        libroImagen.src = libro.portada_link;
+                    } else {
+                        infoContainer.textContent = "Libro no encontrado.";
+                    }
+
+                    if (libro) {
+                        const elemento = document.createElement("p");
+                        elemento.textContent = `
+                            Etiqueta: ${libro.nombre_etiqueta},
+                            Descripción: ${libro.descripcion},
+                            Color: ${libro.color},
+                            Tags: ${libro.tags},
+                            Fecha de etiqueta: ${libro.fecha_etiqueta},
+                            `;
+                        infoContainer.appendChild(elemento);
+
+                        // Mostrar la imagen del libro
+                        libroImagen.src = libro.portada_link;
+                    } else {
+                        infoContainer.textContent = "Libro no encontrado.";
+                    }
+
+                    if (libro) {
+                        const elemento = document.createElement("p");
+                        elemento.textContent = `
+                            Categoría: ${libro.categoria},
+                            Cantidad: ${libro.cantidad},
+                            Estante: ${libro.estante},
+                            Ubicación: ${libro.ubicacion},
+                            Ubicación actual: ${libro.ubicacion_actual},
+                            Fecha de organización: ${libro.fecha_organizacion},
+                            `;
+                        infoContainer.appendChild(elemento);
+
+                        // Mostrar la imagen del libro
+                        libroImagen.src = libro.portada_link;
+                    } else {
+                        infoContainer.textContent = "Libro no encontrado.";
+                    }
+
+                    if (libro) {
+                        const elemento = document.createElement("p");
+                        elemento.textContent = `
+                            Nombre: ${libro.nombre},
+                            Fecha de nacimiento: ${libro.fecha_nacimiento},
+                            Nacionalidad: ${libro.nacionalidad},
+                            Biografía: ${libro.biografia},
+                            Obras destacadas: ${libro.obras_destacadas},
+                            Enlace: ${libro.enlace_autor},
+
+                            `;
+                        infoContainer.appendChild(elemento);
+
+                        // Mostrar la imagen del libro
+                        libroImagen.src = libro.portada_link;
+                    } else {
+                        infoContainer.textContent = "Libro no encontrado.";
+                    }
+
+                }
+            };
+            xhr.send();
+        }
+
+        // Cargar la lista de libros al cargar la página
+        window.addEventListener("load", function() {
+            const libroSelector = document.getElementById("libroSelector");
+
+            // Realizar una solicitud HTTP para cargar el archivo JSON local
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "datos2.json", true); // Cambia "datos.json" al nombre de tu archivo JSON
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+
+                    // Llenar el selector con opciones basadas en los valores de "id_libro" del JSON
+                    data.forEach(libro => {
+                        const option = document.createElement("option");
+                        option.value = libro.id_libro;
+                        option.textContent = libro.id_libro;
+                        libroSelector.appendChild(option);
+                    });
+                }
+            };
+            xhr.send();
+
+            // Escuchar cambios en el selector y cargar/mostrar los datos correspondientes
+            libroSelector.addEventListener("change", cargarYMostrarDatos);
+        });
+
+        // Obtener el valor de "id_libro" de la URL
+        const urlParams = new URLSearchParams(window.location.search); 
+        const idLibro = urlParams.get("id_libro");
+
+        // Seleccionar el elemento del selector y establecer el valor
+        const libroSelector = document.getElementById("libroSelector");
+        if (idLibro && libroSelector) {
+            libroSelector.value = idLibro;
+            cargarYMostrarDatos(); // Cargar y mostrar los datos del libro seleccionado
+        }
+    </script>
+</body>
+</html>
